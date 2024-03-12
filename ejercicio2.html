@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .color-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .color-button {
+            width: 100px;
+            height: 100px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .color-button:hover {
+            transform: scale(1.1);
+        }
+
+        #caja {
+            width: 500px;
+            height: 600px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h2>
+                Paleta de colores
+            </h2>
+            <div class="color-buttons">
+                <button id="btn-1" class="color-button" style="background-color: #e53e3e;" type="button"></button>
+                <button id="btn-2" class="color-button" style="background-color: #dd6b20;" type="button"></button>
+                <button id="btn-3" class="color-button" style="background-color: #faf089;" type="button"></button>
+                <button id="btn-4" class="color-button" style="background-color: #48bb78;" type="button"></button>
+                <button id="btn-5" class="color-button" style="background-color: #81e6d9;" type="button"></button>
+                <button id="btn-6" class="color-button" style="background-color: #d53f8c;" type="button"></button>
+            </div>
+            <div id="caja"></div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('[id^="btn"]').forEach(button => {
+            button.addEventListener('click', function() {
+                document.getElementById('caja').style.backgroundColor = this.style.backgroundColor;
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        label {
+            color: #666;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .resultado {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>
+                Resultado: <span class="resultado"></span>
+            </h2>
+            <div>
+                <div>
+                    <div>
+                        <label for="">Valor 1</label>
+                        <input id="valor1" type="text">
+                    </div>
+                    <div>
+                        <label for="">Valor 2</label>
+                        <input id="valor2" type="text">
+                    </div>
+                    <div style="display: flex">
+                        <button id="btn-sumar" type="button">
+                            Sumar
+                        </button>
+                        <button id="btn-restar" type="button">
+                            Restar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('btn-sumar').addEventListener('click', function () {
+                sumar();
+            });
+
+            document.getElementById('btn-restar').addEventListener('click', function () {
+                restar();
+            });
+        });
+
+        function sumar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                mostrarResultado("Error: Ingrese solo números");
+            } else {
+                mostrarResultado(valor1 + valor2);
+            }
+        }
+
+        function restar() {
+            var valor1 = parseFloat(document.getElementById('valor1').value);
+            var valor2 = parseFloat(document.getElementById('valor2').value);
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                mostrarResultado("Error: Ingrese solo números");
+            } else {
+                var resultado = valor1 - valor2;
+                mostrarResultado(resultado < 0 ? 0 : resultado);
+            }
+        }
+
+        function mostrarResultado(resultado) {
+            document.querySelector('.resultado').textContent = resultado;
+        }
+    </script>
+</body>
+
+</html>

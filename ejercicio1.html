@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 40%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .resultado {
+            color: green;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error {
+            color: red;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div style="width: 40%;margin: 0 auto">
+            <h2>
+                Escríbenos !!!
+            </h2>
+            <div class="resultado">
+            </div>
+            <form id="formulario">
+                <div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Nombre completo
+                        </label>
+                        <input id="nombre" type="text">
+                        <p class="errorNombre error"></p>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <label>
+                            Asunto
+                        </label>
+                        <input id="asunto" type="text">
+                        <p class="errorAsunto error"></p>
+                    </div>
+                </div>
+                <div style="display: flex;flex-direction: column;">
+                    <label>
+                        Mensaje
+                    </label>
+                    <textarea id="mensaje"></textarea>
+                    <p class="errorMensaje error"></p>
+                </div>
+                <div>
+                    <button id="botton" type="submit">
+                        Envíar mensaje
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+            document.getElementById("formulario").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Validación del nombre
+            var nombreInput = document.getElementById("nombre");
+            var nombre = nombreInput.value.trim();
+            var errorNombre = document.querySelector(".errorNombre");
+            var nombreRegex = /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/; // Permitir acentos y "ñ" para "Peña" por ejemplo.
+
+            if (!nombreRegex.test(nombre)) {
+                errorNombre.textContent = "El nombre es requerido.";
+                return;
+            } else {
+                errorNombre.textContent = "";
+            }
+
+            // Validación del asunto
+            var asuntoInput = document.getElementById("asunto");
+            var asunto = asuntoInput.value.trim();
+            var errorAsunto = document.querySelector(".errorAsunto");
+
+            if (!nombreRegex.test(asunto)) {
+                errorAsunto.textContent = "El asunto es requerido.";
+                return;
+            } else {
+                errorAsunto.textContent = "";
+            }
+
+            // Validación del mensaje
+            var mensajeInput = document.getElementById("mensaje");
+            var mensaje = mensajeInput.value.trim();
+            var errorMensaje = document.querySelector(".errorMensaje");
+
+            if (mensaje === "") {
+                errorMensaje.textContent = "El mensaje es requerido.";
+                return;
+            } else {
+                errorMensaje.textContent = "";
+            }
+
+            // Si pasa todas las validaciones, se puede enviar el formulario
+            document.querySelector(".resultado").textContent = "Mensaje enviado con éxito";
+            document.getElementById("formulario").reset(); // Limpiar el formulario
+        });
+    </script>
+</body>
+
+</html>
